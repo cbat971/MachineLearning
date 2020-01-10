@@ -7,42 +7,55 @@ directory = (__file__)
 path = directory.replace(os.path.basename(__file__), 'Data\\')
 
 data = pd.read_csv(path+'DASH.csv')
-print(data)
+
 
 def list_manager(check_list: list, list_size: int):
 	if len(check_list) > list_size:
 		check_list.pop(0)
 		list_manager(check_list, list_size)
 
-
-list_of_lows = []
-list_of_highs = []
-list_of_open = []
-list_of_close = []
-
-
-
-L = queue.Queue(maxsize=20)
-L.put(5)
-L.put(9)
-L.put(1)
-L.put(7)
-print(L.get())
-print(L.get())
-print(L.get())
-print(L.get())
-
-
-
-A=B=C=D=E=F=G=H=I=J=K=L=M=N=O=P=Q=R=S=T=U=V=W=X=Y=Z = ''
-for highs in data['High']:
-	list_of_highs.append(highs)
-	# list_manager(list_of_highs, 5)
-	# print(list_of_highs)
-	# time.sleep(.1)
+count = []
+for each in range(len(data['High'])):
+	count.append(each)
+cd = { #crypto_data
+"Highs": data['High'],
+"Lows": data['Low'],
+"Open": data['Open'],
+"Close": data['Close'],
+"Count": count
+}
+for i in cd['Count']:
+	#while cd['Count'][i+1] == True:
+		try:
+			if cd['Highs'][i] > cd['Highs'][i+1]:
+				print(cd['Highs'][i])
+		except:
+			print("Done")
 
 
 
+
+# for i in range(crypto_data["Count"]):
+	# print(i)
+	# print(crypto_data['Highs'])
+	# print(crypto_data['Lows'][i])
+	# print(crypto_data['Open'][i])
+	# print(crypto_data['Close'][i])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''
 differences = []
 
 print(list_of_highs)
@@ -59,7 +72,7 @@ for idx, val in enumerate(reversed(list_of_highs)):
 				print("The difference in satoshi's is: ")
 				print(percent_change)
 				print("")
-				print("")
+				print("")'''
 
 
 
